@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 
 const productContext = createContext();
 export const useProduct = () => useContext(productContext);
@@ -21,6 +21,7 @@ const reducer = (state = initialState, action) => {
 };
 
 const ProductContext = ({ children }) => {
+  const [inputValues, setInputValues] = useState([]);
   const API =
     "https://api-crud.elcho.dev/api/v1/6e68bc81c9a4ecdf36cf2daee0180517/product";
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -55,31 +56,41 @@ const ProductContext = ({ children }) => {
     readProduct();
   }
 
-  function filterProduct(value) {
-    if (value === "mac") {
-      let result = state.data.filter((item) => item.category === "mac");
-      dispatch({
-        type: "GET",
-        payload: result,
-      });
-    } else if (value === "watch") {
-      let result = state.data.filter((item) => item.category === "watch");
-      dispatch({
-        type: "GET",
-        payload: result,
-      });
-    } else if (value === "phone") {
-      let result = state.data.filter((item) => item.category === "phone");
-      dispatch({
-        type: "GET",
-        payload: result,
-      });
-    } else if (value === "all") {
-      readProduct();
-    }
-  }
+  // function filterProduct(value) {
+  //   if (value === "mac") {
+  //     let result = state.data.filter((item) => item.category === "mac");
+  //     dispatch({
+  //       type: "GET",
+  //       payload: result,
+  //     });
+  //   } else if (value === "watch") {
+  //     let result = state.data.filter((item) => item.category === "watch");
+  //     dispatch({
+  //       type: "GET",
+  //       payload: result,
+  //     });
+  //   } else if (value === "phone") {
+  //     let result = state.data.filter((item) => item.category === "phone");
+  //     dispatch({
+  //       type: "GET",
+  //       payload: result,
+  //     });
+  //   } else if (value === "all") {
+  //     readProduct();
+  //   }
+  // }
+  const initialValue = {
+    title: "",
+    category: "",
+  };
+
+  const handlerInput = () => {
+    addProduct(setInputValues);
+    setInputValues(initialValue);
+  };
 
   const values = {
+    handlerInput,
     addProduct,
     readProduct,
     data: state.data,
@@ -87,7 +98,7 @@ const ProductContext = ({ children }) => {
     deleteProduct,
     getOneProduct,
     editProduct,
-    filterProduct,
+    // filterProduct,
   };
   return (
     <productContext.Provider value={values}>{children}</productContext.Provider>

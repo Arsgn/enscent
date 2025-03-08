@@ -5,9 +5,27 @@
   text-decoration: none;
 }
 
+body {
+  background: rgb(39, 44, 48);
+}
+
 .container {
   max-width: 1280px;
   width: 100%;
   padding-inline: 20px;
   margin: 0 auto;
+}
+
+button {
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  border: 0.2px solid black;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: 0.2s;
+  background: rgb(175, 175, 175);
+  color: white;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Products from "../components/layout/pages/Products";
 import AddProduct from "../components/layout/pages/AddProduct";
+import ListProduct from "../components/layout/pages/ListProduct";
 
 const MainRoutes = () => {
   const routes = [
@@ -11,9 +12,14 @@ const MainRoutes = () => {
       id: 1,
     },
     {
+      link: "/list",
+      element: <ListProduct />,
+      id: 2,
+    },
+    {
       link: "/products",
       element: <Products />,
-      id: 2,
+      id: 3,
     },
   ];
 

@@ -22,9 +22,13 @@ const Header = () => {
             </Link>
           </div>
           <div className={scss.icons}>
-            <IoIosContact />
+            <Link to="/add">
+              <IoIosContact />
+            </Link>
             <CiHeart />
-            <FiShoppingCart />
+            <Link to="/list">
+              <FiShoppingCart />
+            </Link>
           </div>
         </div>
       </div>
